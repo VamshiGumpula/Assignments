@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        button{
+            /* font-size:small; */
+            cursor: pointer;
+        }
+         div{
+            margin-top: 32vh;
+            margin-left: 40vw;
+            width: 60%;
+            
+        }
+        body{
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <button value="Local Score" id="Increment">Increment</button><br>
+        <!-- <p id="aa"></p>
+        <p id="bb"></p> -->
+        <ul></ul>
+        <button id="reset">Reset</button>
+    </div>
+    <script>
+      U=document.querySelector('ul');//selet unordered llist
+        Lo=document.createElement('li')
+        Se=document.createElement('li');
+        l1=document.createElement('span');
+        l2=document.createElement('span');
+        l1.textContent="Local Score: ";//LocalStorage Value
+        l2.textContent=0;
+
+        s1=document.createElement('span');
+        s2=document.createElement('span');
+        s1.textContent="Session Score: ";// SessionStorage Value:
+        s2.textContent=0;
+        Lo.appendChild(l1);
+        Lo.appendChild(l2);
+        Se.appendChild(s1);
+        Se.appendChild(s2);
+        U.appendChild(Lo);
+        U.appendChild(Se);
+
+        //Local storage
+        if(localStorage.getItem("incr")){
+             console.log(localStorage.getItem("incr"))
+        }
+        else{
+        localStorage.setItem("incr",0); 
+        }
+
+        //Session storage
+        if(sessionStorage.getItem("incr")){
+
+          console.log(sessionStorage.getItem("incr"))
+        }
+        else{
+            sessionStorage.setItem("incr",0)
+        }
+
+        //increment button adding event listeners
+        bt=document.querySelector('button');
+        bt.addEventListener("click",()=>{
+            x=localStorage.getItem("incr");
+            y=sessionStorage.getItem("incr");
+            localStorage.setItem("incr",parseInt(x)+1);
+            sessionStorage.setItem("incr",parseInt(y)+1);
+            l2.textContent=localStorage.getItem("incr");
+            s2.textContent=sessionStorage.getItem("incr");
+        })
+        
+        l2.textContent=localStorage.getItem("incr");
+        s2.textContent=sessionStorage.getItem("incr");
+
+
+        //reset button adding eventlisteners
+        r=document.getElementById("reset");
+        r.addEventListener('click',()=>{
+            l2.textContent=0;
+            s2.textContent=0;
+            localStorage.setItem("incr",0);
+            sessionStorage.setItem("incr",0);
+        })
+    </script>
+</body>
+</html>
+
